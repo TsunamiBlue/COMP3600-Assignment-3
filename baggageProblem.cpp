@@ -3,6 +3,7 @@
 #include<string>
 #include<ctime>
 #include<cstring>
+#include<ctime>
 
 using namespace std;
 
@@ -72,6 +73,11 @@ int main(int argc, char** argv) {
 	}
 
 	// Your program
+
+	clock_t startAlgorithmTime, endAlgorithmTime;
+	long double totalAlgorithmTime;
+
+
 	int money;
 	int total_kind;
 	fin >> money >> total_kind;
@@ -91,6 +97,7 @@ int main(int argc, char** argv) {
 			indexA[i][j]=j;
 		}
 	}
+	startAlgorithmTime = clock();
 	// start brute forcing
 	int* currentIndexArray = new int[total_kind];
 	int maximumCost = 0;
@@ -121,11 +128,13 @@ int main(int argc, char** argv) {
 			std::copy(currentIndexArray,currentIndexArray+total_kind,maximumBuyList);
 		}
 	}
+	endAlgorithmTime = clock();
 	cout << maximumCost<<" ";
 	for (int i = 0; i < total_kind; i++) {
 		cout << maximumBuyList[i]+1 << " ";
 	}
 	cout << endl;
+	cout << (long double)((long double)endAlgorithmTime - (long double)startAlgorithmTime) * 1000 / CLOCKS_PER_SEC << "ms" << endl;
 	//int** ans = new int*[multiplication(length,total_kind)];
 	//for (int i = 1; i < total_kind; i++) {
 	//	int** tmp = new int* [length[i]];
